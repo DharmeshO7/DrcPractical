@@ -1,18 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <variable
+            name="balance"
+            type="String" />
+
+        <variable
+            name="notes"
+            type="String" />
+
+        <variable
+            name="txn"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBalance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="@{`Balance : $` +balance}"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Balance : $50000" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAvailableNotes"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:padding="20dp"
+            android:text="@{`Available Note:\n\n`+notes}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvLastTxn"
+            app:layout_constraintTop_toBottomOf="@+id/tvBalance"
+            tools:text="Available Note:\n\n1. 2000 * 4 = 8,000/-\n2. 500 * 3 = 1,500/-\n3. 200 * 2 = 400/-\n4. 50 * 1 = 50/-\n5. 20 * 2 = 40/-" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLastTxn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:padding="20dp"
+            android:text="@{`Last Txn :\n\n` +txn}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/etWithdraw"
+            app:layout_constraintTop_toBottomOf="@+id/tvAvailableNotes"
+            tools:text="Last Txn :\n\n1. 2000 * 4 = 8,000/-\n2. 500 * 3 = 1,500/-\n3. 200 * 2 = 400/-\n4. 50 * 1 = 50/-\n5. 20 * 2 = 40/-" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etWithdraw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/shape_withdraw_bg"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnWithdraw" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnWithdraw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
+            android:letterSpacing="0"
+            android:paddingVertical="10dp"
+            android:text="@string/withdraw"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
